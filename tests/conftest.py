@@ -13,3 +13,4 @@ def manage_browser():
     yield
 
     browser.quit()
+
