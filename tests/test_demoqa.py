@@ -32,12 +32,9 @@ def test_form_autocomplete():
     # Ввод адреса
     browser.element('#currentAddress').type('Mytishchi')
     # Выбор штата
-    # browser.element('#state').click()
-    browser.element('#state').click()
-    browser.element('#state[class$=menu][id$=option-2]').should(have.text('Haryana')).click()
+    browser.element('#state').click().element('#react-select-3-option-2').click()
     # Выбор города
-    browser.element('#city').click()
-    browser.element('#city[class$=menu][id$=option-0]').should(have.exact_text('Karnal')).click()
+    browser.element('#city').click().element('#react-select-4-option-0').click()
     # Отправка данных
     browser.element('#submit').click()
 
