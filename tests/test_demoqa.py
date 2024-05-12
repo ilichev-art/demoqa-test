@@ -16,7 +16,6 @@ def test_form_autocomplete():
     browser.element('#userEmail').type('test@mail.ru')
 
     # Активация радиокнопки в блоке Gender
-    # browser.all('.col-sm-12>div').element_by(have.exact_text('Other')).click()
     browser.element('#genterWrapper').element('[for="gender-radio-3"]').click()
 
     # Ввод номера телефона
