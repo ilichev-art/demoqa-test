@@ -32,10 +32,10 @@ def test_form_autocomplete():
     browser.element('#subjectsInput').type('computer').press_tab()
 
     # Активация чек-бокса в разделе Hobbies
-    browser.element('//*[@for="hobbies-checkbox-1"]').click()
+    browser.element('[for="hobbies-checkbox-1"]').click()
 
     # Загрузка изображения
-    browser.element('#uploadPicture').send_keys(os.path.abspath('tests/Pictures/1703075063565.jpeg'))
+    browser.element('#uploadPicture').send_keys(os.path.abspath('Pictures/1703075063565.jpeg'))
 
     # Ввод адреса
     browser.element('#currentAddress').type('Mytishchi')
@@ -49,8 +49,7 @@ def test_form_autocomplete():
 
     # Проверка введенных данных
     browser.element('.modal-content').element('table').all(
-        'tr').all('td')[1::2].should(
-        have.exact_texts(
+        'tr').all('td').even.should(have.exact_texts((
             'Mahatma Gandhi',
             'test@mail.ru',
             'Other',
@@ -61,7 +60,7 @@ def test_form_autocomplete():
             '1703075063565.jpeg',
             'Mytishchi',
             'Haryana Karnal'
-        ))
+        )))
 
 
 
