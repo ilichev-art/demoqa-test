@@ -35,7 +35,7 @@ def test_form_autocomplete():
     browser.element('[for="hobbies-checkbox-1"]').click()
 
     # Загрузка изображения
-    browser.element('#uploadPicture').send_keys(os.path.abspath('Pictures/1703075063565.jpeg'))
+    browser.element('#uploadPicture').send_keys(os.path.abspath('pictures/1703075063565.jpeg'))
 
     # Ввод адреса
     browser.element('#currentAddress').type('Mytishchi')
