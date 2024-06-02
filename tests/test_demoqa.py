@@ -7,7 +7,7 @@ def test_form_autocomplete():
     # Открытие раздела с формой ввода данных
     browser.open('/automation-practice-form')
 
-    # Ввод данных
+    # WHEN
     # Ввод FistName и LastName
     browser.element('#firstName').type('Mahatma')
     browser.element('#lastName').type('Gandhi')
@@ -47,6 +47,7 @@ def test_form_autocomplete():
     # Отправка данных
     browser.element('#submit').click()
 
+    #THEN
     # Проверка введенных данных
     browser.element('.modal-content').element('table').all(
         'tr').all('td').even.should(have.exact_texts((
