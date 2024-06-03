@@ -10,7 +10,6 @@ class RegistrationPage:
         self.state = browser.element('#state')
         self.city = browser.element('#city')
 
-
     def open(self):
         browser.open('/automation-practice-form')
 
@@ -75,10 +74,11 @@ class RegistrationPage:
         browser.element('#submit').click()
         return self
 
-    def registered_user_with(self, full_name, email, gender, phone, date_of_birth, subject, hobby, photo, address, state):
+    def registered_user_with(self, full_name, email, gender, phone, date_of_birth, subject, hobby, photo, address,
+                             state):
         browser.element('.modal-content').element('table').all(
             'tr').all('td').even.should(have.exact_texts(
-        full_name,
+            full_name,
                 email,
                 gender,
                 phone,
