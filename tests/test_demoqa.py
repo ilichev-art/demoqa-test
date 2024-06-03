@@ -1,67 +1,82 @@
-from selene import browser, have
-import os
+
+from demoqa_test.registration_page import RegistrationPage
 
 
 def test_form_autocomplete():
+    registration_page = RegistrationPage()
+    registration_page.open()
+    (
+        registration_page
+        .fill_first_name('Mahatma')
+        .fill_second_name('Gandhi')
+        .fill_email('test@mail.ru')
+        .fill_gender('Other')
+        .fill_phone('9095748574')
+        .fill_date_of_birth('1989', 'March', '21')
+        .fill_subject('computer')
+        .fill_hobbies('Sports')
+        .upload_file('1703075063565.jpeg')
+        .fill_current_address('Mytishchi')
+        .fill_state_and_city('Haryana', 'Karnal')
 
-    # Открытие раздела с формой ввода данных
-    browser.open('/automation-practice-form')
+        .submit()
 
-    # WHEN
-    # Ввод FistName и LastName
-    browser.element('#firstName').type('Mahatma')
-    browser.element('#lastName').type('Gandhi')
-
-    # Ввод почты
-    browser.element('#userEmail').type('test@mail.ru')
-
-    # Активация радиокнопки в блоке Gender
-    browser.element('#genterWrapper').element('[for="gender-radio-3"]').click()
-
-    # Ввод номера телефона
-    browser.element('#userNumber').type('9095748574')
-
-    # Установка даты рождения
-    browser.element('#dateOfBirthInput').click()
-    browser.element('.react-datepicker__year-select').click()
-    browser.all('.react-datepicker__year-select>option').element_by(have.exact_text('1989')).click()
-    browser.element('.react-datepicker__month-select').click()
-    browser.all('.react-datepicker__month-select>option').element_by(have.exact_text('March')).click()
-    browser.element('.react-datepicker__day.react-datepicker__day--021').click()
-    # Выбор предмета
-    browser.element('#subjectsInput').type('computer').press_tab()
-
-    # Активация чек-бокса в разделе Hobbies
-    browser.element('[for="hobbies-checkbox-1"]').click()
-
-    # Загрузка изображения
-    browser.element('#uploadPicture').send_keys(os.path.abspath('pictures/1703075063565.jpeg'))
-
-    # Ввод адреса
-    browser.element('#currentAddress').type('Mytishchi')
-
-    # Выбор штата и города
-    browser.element('#state').click().element('#react-select-3-option-2').click()
-    browser.element('#city').click().element('#react-select-4-option-0').click()
-
-    # Отправка данных
-    browser.element('#submit').click()
-
-    #THEN
-    # Проверка введенных данных
-    browser.element('.modal-content').element('table').all(
-        'tr').all('td').even.should(have.exact_texts((
+        .registered_user_with(
             'Mahatma Gandhi',
             'test@mail.ru',
-            'Other',
-            '9095748574',
-            '21 March,1989',
-            'Computer Science',
-            'Sports',
-            '1703075063565.jpeg',
-            'Mytishchi',
-            'Haryana Karnal'
-        )))
+             'Other',
+             '9095748574',
+             '21 March,1989',
+             'Computer Science',
+              'Sports',
+             '1703075063565.jpeg',
+             'Mytishchi',
+             'Haryana Karnal'
+        )
+    )
+
+    # registration_page.open()
+    #
+    # # WHEN
+    # registration_page.fill_first_name('Mahatma')
+    # registration_page.fill_second_name('Gandhi')
+    #
+    # registration_page.fill_email('test@mail.ru')
+    #
+    # registration_page.fill_gender('Other')
+    #
+    # registration_page.fill_phone('9095748574')
+    #
+    # registration_page.fill_date_of_birth('1989', 'March', '21')
+    #
+    # registration_page.fill_subject('computer')
+    #
+    # registration_page.set_hobbies('Sports')
+    #
+    # registration_page.upload_file('1703075063565.jpeg')
+    #
+    # registration_page.fill_current_address('Mytishchi')
+    #
+    # registration_page.fill_state_and_city('Haryana', 'Karnal')
+    #
+    # registration_page.submit()
+    #
+    # #THEN
+    # # Проверка введенных данных
+    # registration_page.registered_user_with(
+    #     'Mahatma Gandhi',
+    #     'test@mail.ru',
+    #     'Other',
+    #     '9095748574',
+    #     '21 March,1989',
+    #     'Computer Science',
+    #     'Sports',
+    #     '1703075063565.jpeg',
+    #     'Mytishchi',
+    #     'Haryana Karnal'
+    # )
+
+
 
 
 
