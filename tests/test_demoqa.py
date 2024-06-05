@@ -48,6 +48,6 @@ def test_form_autocomplete():
             'Mytishchi',
             'Haryana Karnal'
         )))
-
+    pass
 
 
