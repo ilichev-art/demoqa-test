@@ -17,7 +17,7 @@ def setup_browser(request):
     options = Options()
     capabilities = {
         "browserName": "chrome",
-        "browserVersion": "122.0",
+        "browserVersion": "100.0",
         "selenoid:options": {"enableVideo": True, "enableVNC": True},
     }
 
@@ -32,7 +32,7 @@ def setup_browser(request):
     )
     browser.config.driver = driver
 
-    browser.config.base_url = os.getenv("selene.base_url", "https://demoqa.com")
+    browser.config.base_url = "https://demoqa.com"
     browser.config.window_width = int(os.getenv("selene.window_width", 1920))
     browser.config.window_height = int(os.getenv("selene.window_heigh", 1200))
 
