@@ -3,7 +3,7 @@ from selene import browser, have
 import os
 
 
-def test_form_autocomplete():
+def test_form_autocomplete(setup_browser):
     with allure.step('Open site'):
         browser.open('/automation-practice-form')
 
