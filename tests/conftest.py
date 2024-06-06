@@ -1,7 +1,7 @@
 import pytest
 from dotenv import load_dotenv
 import os
-from selene.support.shared import browser
+from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from utils import attach
@@ -13,7 +13,7 @@ def load_env():
 
 
 @pytest.fixture(scope="function")
-def setup_browser(request):
+def setup_browser():
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
@@ -34,7 +34,7 @@ def setup_browser(request):
 
     browser.config.base_url = "https://demoqa.com"
     browser.config.window_width = int(os.getenv("selene.window_width", 1920))
-    browser.config.window_height = int(os.getenv("selene.window_heigh", 1200))
+    browser.config.window_height = int(os.getenv("selene.window_height", 1200))
 
     yield browser
 
