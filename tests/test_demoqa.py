@@ -30,7 +30,7 @@ def test_form_autocomplete(setup_browser):
         # browser.element('#uploadPicture').send_keys(os.path.abspath('pictures/1703075063565.jpeg'))
         browser.element("#uploadPicture").set_value(
             str(
-                Path(tests.__file__)
+                Path(__file__)
                 .parent.joinpath(f"pictures/1703075063565.jpeg")
                 .absolute()
             )
