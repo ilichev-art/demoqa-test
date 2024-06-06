@@ -15,7 +15,7 @@ def load_env():
 @pytest.fixture(scope="function")
 def setup_browser(request):
     options = Options()
-    capabilities = {
+    selenoid_capabilities = {
         "browserName": "chrome",
         "browserVersion": "100.0",
         "selenoid:options": {"enableVideo": True, "enableVNC": True},
@@ -25,7 +25,7 @@ def setup_browser(request):
     selenoid_pass = os.getenv("SELENOID_PASS")
     selenoid_url = os.getenv("SELENOID_URL")
 
-    options.capabilities.update(capabilities)
+    options.capabilities.update(selenoid_capabilities)
     driver = webdriver.Remote(
         command_executor=f"https://{selenoid_login}:{selenoid_pass}@{selenoid_url}/wd/hub",
         options=options,
