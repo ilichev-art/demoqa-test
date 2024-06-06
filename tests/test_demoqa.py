@@ -1,8 +1,6 @@
 from pathlib import Path
-
 import allure
-from selene import browser, have
-import os
+from selene import browser, have, command
 
 import tests
 
@@ -30,16 +28,24 @@ def test_form_autocomplete(setup_browser):
         browser.element("#subjectsInput").type("computer").press_tab()
         browser.element('[for="hobbies-checkbox-1"]').click()
         # browser.element('#uploadPicture').send_keys(os.path.abspath('pictures/1703075063565.jpeg'))
-        browser.element("#uploadPicture").type(
+        browser.element("#uploadPicture").set_value(
             str(
-                Path(tests.__file__).parent.parent.joinpath(
-                    f'resources/1703075063565.jpeg'
-                )
+                Path(tests.__file__)
+                .parent.joinpath(f"pictures/1703075063565.jpeg")
+                .absolute()
             )
         )
         browser.element("#currentAddress").type("Mytishchi")
-        browser.element("#state").click().element("#react-select-3-option-2").click()
-        browser.element("#city").click().element("#react-select-4-option-0").click()
+        browser.element("#state").perform(command.js.scroll_into_view)
+        browser.element("#state").click()
+        browser.all("[id^=react-select][id*=option]").element_by(
+            have.exact_text('Haryana')
+        ).click()
+        browser.element("#city").perform(command.js.scroll_into_view)
+        browser.element("#city").click()
+        browser.all("[id^=react-select][id*=option]").element_by(
+            have.exact_text('Karnal')
+        ).click()
 
     with allure.step("Submit form"):
         browser.element("#submit").click()
