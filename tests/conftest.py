@@ -11,7 +11,7 @@ DEFAULT_BROWSER_VERSION = '100.0'
 def pytest_addoption(parser):
     parser.addoption(
         "--browser_version",
-        default="100.0",
+        default="100.0"
     )
 
 @pytest.fixture(scope="session", autouse=True)
@@ -27,7 +27,7 @@ def setup_browser(request):
     selenoid_capabilities = {
         "browserName": 'chrome',
         "browserVersion": browser_version,
-        "selenoid:options": {"enableVideo": True, "enableVNC": True},
+        "selenoid:options": {"enableVideo": True, "enableVNC": True}
     }
 
     selenoid_login = os.getenv("SELENOID_LOGIN")
