@@ -2,7 +2,6 @@ from pathlib import Path
 import allure
 from selene import browser, have, command
 
-import tests
 
 
 def test_form_autocomplete(setup_browser):
@@ -27,7 +26,6 @@ def test_form_autocomplete(setup_browser):
         browser.element(".react-datepicker__day.react-datepicker__day--021").click()
         browser.element("#subjectsInput").type("computer").press_tab()
         browser.element('[for="hobbies-checkbox-1"]').click()
-        # browser.element('#uploadPicture').send_keys(os.path.abspath('pictures/1703075063565.jpeg'))
         browser.element("#uploadPicture").set_value(
             str(
                 Path(__file__)
